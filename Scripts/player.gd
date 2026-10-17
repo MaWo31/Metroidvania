@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D
 
 @onready var player_movement: PlayerMovement = %PlayerMovement
 @onready var input_component: InputComponent = %InputComponent
+@onready var player_states: PlayerStates = %PlayerStates
 
 func _physics_process(delta: float) -> void:
 	input_component.update()

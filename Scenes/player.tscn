@@ -1,23 +1,29 @@
 [gd_scene format=3 uid="uid://c5eaedhs2mkll"]
 
 [ext_resource type="Script" uid="uid://bwhxc4etr6mg6" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://cu71x1t6uiqad" path="res://icon.svg" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://cu71x1t6uiqad" path="res://icon.svg" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://b2anmo0nr62ea" path="res://Scripts/player_movement.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://dq6kvym0876e8" path="res://Scripts/input_component.gd" id="4_vgqql"]
+[ext_resource type="Texture2D" uid="uid://ccmo3hfj15dsb" path="res://Assets/player1.png" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://b5r8h7gwsus1k" path="res://Scripts/player_states.gd" id="6_x3wgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
-size = Vector2(64, 124)
+size = Vector2(80, 127)
 
 [node name="Player" type="CharacterBody2D" unique_id=1599080216]
 collision_layer = 2
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=233464397]
-scale = Vector2(0.5, 1)
-texture = ExtResource("1_v0iea")
+scale = Vector2(0.625, 1)
+texture = ExtResource("2_vgqql")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1611359029]
+scale = Vector2(0.4, 0.25)
+texture = ExtResource("5_fkybt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1309703725]
-position = Vector2(0, 2)
+position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_bhunq")
 
 [node name="PlayerMovement" type="Node" parent="." unique_id=165326564 node_paths=PackedStringArray("body", "jump_buffer", "dash_cd", "coyote_time")]
@@ -44,3 +50,9 @@ one_shot = true
 unique_name_in_owner = true
 script = ExtResource("4_vgqql")
 metadata/_custom_type_script = "uid://dq6kvym0876e8"
+
+[node name="PlayerStates" type="Node" parent="." unique_id=1883595560 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("6_x3wgy")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://b5r8h7gwsus1k"
