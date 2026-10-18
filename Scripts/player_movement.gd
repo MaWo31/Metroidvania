@@ -1,6 +1,7 @@
 class_name PlayerMovement extends Node
 
 @onready var player_states: PlayerStates = %PlayerStates
+@onready var sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
 
 @export var body: Player
 @export var jump_buffer: Timer
@@ -47,12 +48,18 @@ func update(delta) -> void:
 	
 	if body.is_on_floor() and dash_cd.time_left <= 0.5:
 		dash_cd.stop()
-	if dash_pressed and dash_cd.is_stopped():
+	if dash_pressed and dash_cd.is_stopped() and not body.is_on_wall_only():
 		dash()
 		return
 		
 	if direction != 0:
 		facing_dir = sign(direction)
+
+	
+	if body.velocity.x > 0:
+		sprite.flip_h = false
+	elif body.velocity.x < 0:
+		sprite.flip_h = true
 	
 	var target_speed = direction * speed
 	var accel := 0.0
@@ -108,3 +115,4 @@ func dash() -> void:
 func wall_jump() -> void:
 	body.velocity.y = -jump_force * 0.85
 	body.velocity.x = speed * -facing_dir * 1.2
+	player_states.change_state(player_states.State.JUMP)

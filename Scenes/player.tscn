@@ -4,26 +4,114 @@
 [ext_resource type="Texture2D" uid="uid://cu71x1t6uiqad" path="res://icon.svg" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://b2anmo0nr62ea" path="res://Scripts/player_movement.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://dq6kvym0876e8" path="res://Scripts/input_component.gd" id="4_vgqql"]
-[ext_resource type="Texture2D" uid="uid://ccmo3hfj15dsb" path="res://Assets/player1.png" id="5_fkybt"]
+[ext_resource type="Texture2D" uid="uid://dkpoopknxgdka" path="res://Assets/PlayerSpriteSheet.png" id="6_3smsa"]
 [ext_resource type="Script" uid="uid://b5r8h7gwsus1k" path="res://Scripts/player_states.gd" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://bi560iwtv15ev" path="res://Scripts/player_animations.gd" id="7_3smsa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(256, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3wgy"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3smsa"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ek2"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(768, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
+atlas = ExtResource("6_3smsa")
+region = Rect2(512, 512, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_riqys"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}],
+"loop": 0,
+"name": &"Fall",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3wgy")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3smsa")
+}],
+"loop": 0,
+"name": &"Jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8erm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ek2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}],
+"loop": 1,
+"name": &"Run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukyrk")
+}],
+"loop": 1,
+"name": &"WallSlide",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhunq"]
-size = Vector2(80, 127)
+size = Vector2(22, 114)
 
 [node name="Player" type="CharacterBody2D" unique_id=1599080216]
 collision_layer = 2
 script = ExtResource("1_cvnsp")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=233464397]
+visible = false
 scale = Vector2(0.625, 1)
 texture = ExtResource("2_vgqql")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1611359029]
-scale = Vector2(0.4, 0.25)
-texture = ExtResource("5_fkybt")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=323939244]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_riqys")
+animation = &"Idle"
+autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1309703725]
-position = Vector2(-1, -0.5)
+position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_bhunq")
 
 [node name="PlayerMovement" type="Node" parent="." unique_id=165326564 node_paths=PackedStringArray("body", "jump_buffer", "dash_cd", "coyote_time")]
@@ -56,3 +144,9 @@ unique_name_in_owner = true
 script = ExtResource("6_x3wgy")
 player = NodePath("..")
 metadata/_custom_type_script = "uid://b5r8h7gwsus1k"
+
+[node name="PlayerAnimations" type="Node" parent="." unique_id=1766577176 node_paths=PackedStringArray("player")]
+unique_name_in_owner = true
+script = ExtResource("7_3smsa")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://bi560iwtv15ev"
