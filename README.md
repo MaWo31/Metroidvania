@@ -8,9 +8,11 @@ I'm developing it step by step over the next few weeks, starting with the basic 
 ## What's done so far?
 
 - Player movement and jumping
-- Camera that follows the player
 - Camera deadzone and lookahead
 - Player states connected to movement
+- HurtBox and HitBox classes extending Area2D node
+- Simple player attack
+- Attack Dummy to test attacks on
 
 The game is still in its early stages, so there's not much to show yet. I'm currently focusing on getting the basic mechanics working before spending too much time on art and other details.
 
@@ -25,6 +27,7 @@ The game is still in its early stages, so there's not much to show yet. I'm curr
 
 - [Godot Engine](https://godotengine.org/)
 - GDScript
+- Krita (Assets)
 
 ## How to run
 
