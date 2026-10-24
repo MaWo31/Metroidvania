@@ -2,6 +2,7 @@ class_name PlayerMovement extends Node
 
 @onready var player_states: PlayerStates = %PlayerStates
 @onready var sprite: AnimatedSprite2D = $"../AnimatedSprite2D"
+@onready var slashcol: Node2D = $"../Attacks"
 
 @export var body: Player
 @export var jump_buffer: Timer
@@ -58,8 +59,10 @@ func update(delta) -> void:
 	
 	if body.velocity.x > 0:
 		sprite.flip_h = false
+		slashcol.scale.y = 1
 	elif body.velocity.x < 0:
 		sprite.flip_h = true
+		slashcol.scale.y = -1
 	
 	var target_speed = direction * speed
 	var accel := 0.0

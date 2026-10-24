@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cu71x1t6uiqad" path="res://icon.svg" id="1_i04dx"]
 [ext_resource type="PackedScene" uid="uid://c5eaedhs2mkll" path="res://Scenes/player.tscn" id="2_8pvmw"]
 [ext_resource type="Script" uid="uid://c60wetvvem2kr" path="res://Scripts/camera_2d.gd" id="3_vnucn"]
+[ext_resource type="PackedScene" uid="uid://dhrwfoiwrwe1s" path="res://Scenes/attack_dummy.tscn" id="4_c3mwy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8pvmw"]
 texture = ExtResource("1_i04dx")
@@ -63,3 +64,6 @@ offset_bottom = -419.0
 theme_override_colors/font_color = Color(0.62152386, 0.62152386, 0.6215238, 1)
 theme_override_font_sizes/font_size = 32
 text = "*(you can also slide and jump off walls)*"
+
+[node name="AttackDummy" parent="." unique_id=389073929 instance=ExtResource("4_c3mwy")]
+position = Vector2(6, -64)
